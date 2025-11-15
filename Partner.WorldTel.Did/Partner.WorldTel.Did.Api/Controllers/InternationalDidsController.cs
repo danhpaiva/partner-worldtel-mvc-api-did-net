@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Partner.WorldTel.Did.Api.Data;
 using Partner.WorldTel.Did.Api.DTO;
@@ -38,6 +39,11 @@ namespace Partner.WorldTel.Did.Api.Controllers
         }
 
         [HttpPost("from-number")]
+        [Authorize(Roles = "Admin,Partner")]
+        [ProducesResponseType(typeof(InternationalDid), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(object), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(object), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(object), StatusCodes.Status403Forbidden)]
         public async Task<ActionResult<InternationalDid>> CreateFromNumber(
         [FromBody] CreateDidFromNumberRequest request,
         [FromServices] IDidGeneratorService didGenerator)

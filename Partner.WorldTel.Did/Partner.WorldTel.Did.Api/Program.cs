@@ -6,22 +6,18 @@ using Partner.WorldTel.Did.Api.Interface;
 using Partner.WorldTel.Did.Api.Service;
 using Scalar.AspNetCore;
 using System.Text;
-using Microsoft.OpenApi.Models; // <- ESSENCIAL
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// === DB ===
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("AppDbContext")!));
 
-// === CONTROLLERS ===
 builder.Services.AddControllers();
 
-// === SERVIÇOS ===
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IDidGeneratorService, DidGeneratorService>();
 
-// === JWT ===
 var jwtSettings = builder.Configuration.GetSection("Jwt");
 var secretKey = jwtSettings["SecretKey"]
     ?? throw new InvalidOperationException("Jwt:SecretKey não configurado.");
@@ -47,7 +43,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddAuthorization();
 
-// === SWAGGER + SCALAR (SWASHBUCKLE) ===
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "WorldTel DID API", Version = "v1" });
@@ -76,7 +71,6 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
-// === PIPELINE ===
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -90,7 +84,7 @@ if (app.Environment.IsDevelopment())
         options =>
         {
             options.Title = "WorldTel DID API - Scalar";
-            options.OpenApiRoutePattern = "/swagger/v1/swagger.json"; // ESSA É A CHAVE!);
+            options.OpenApiRoutePattern = "/swagger/v1/swagger.json";
         });
 }
 

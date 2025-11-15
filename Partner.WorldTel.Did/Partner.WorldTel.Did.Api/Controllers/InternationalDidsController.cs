@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Partner.WorldTel.Did.Api.Data;
+using Partner.WorldTel.Did.Api.DTO;
+using Partner.WorldTel.Did.Api.Interface;
 using Partner.WorldTel.Did.Api.Models;
 
 namespace Partner.WorldTel.Did.Api.Controllers
@@ -33,6 +35,26 @@ namespace Partner.WorldTel.Did.Api.Controllers
             }
 
             return internationalDid;
+        }
+
+        [HttpPost("from-number")]
+        public async Task<ActionResult<InternationalDid>> CreateFromNumber(
+        [FromBody] CreateDidFromNumberRequest request,
+        [FromServices] IDidGeneratorService didGenerator)
+        {
+            try
+            {
+                var did = await didGenerator.CreateFromE164NumberAsync(request.E164Number, request.CreatedBy ?? "api");
+                return CreatedAtAction(nameof(GetInternationalDid), new { id = did.Id }, did);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
+            catch (InvalidOperationException ex)
+            {
+                return Conflict(new { error = ex.Message });
+            }
         }
 
         [HttpPut("{id}")]

@@ -211,7 +211,7 @@ https://localhost:7264/swagger/index.html
 **Daniel Paiva**
 Desenvolvedor .NET | Professor Universitário
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](SEU-LINKEDIN-AQUI)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/danhpaiva/)
 ![Stars](https://img.shields.io/github/stars/danhpaiva/partner-worldtel-mvc-api-did-net?style=for-the-badge)
 ![Forks](https://img.shields.io/github/forks/danhpaiva/partner-worldtel-mvc-api-did-net?style=for-the-badge)
 ![Issues](https://img.shields.io/github/issues/danhpaiva/partner-worldtel-mvc-api-did-net?style=for-the-badge)

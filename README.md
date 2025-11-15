@@ -1,11 +1,10 @@
 # 📘 Partner.WorldTel.Did – API de Gerenciamento de DIDs Internacionais
 
-![.NET](https://img.shields.io/badge/.NET_8-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
+![.NET](https://img.shields.io/badge/.NET_10-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
 ![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=csharp&logoColor=white)
 ![SQLite](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white)
 ![Entity Framework Core](https://img.shields.io/badge/Entity_Framework_Core-6DB33F?style=for-the-badge&logo=ef&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-
 
 
 Este repositório contém a **Partner.WorldTel.Did.Api**, uma aplicação ASP.NET Core voltada para o gerenciamento de **DIDs internacionais**, incluindo autenticação de parceiros, geração de números, consulta de DIDs e persistência via Entity Framework Core em banco SQLite.
@@ -23,42 +22,6 @@ A API foi desenvolvida utilizando **boas práticas de arquitetura**, separação
 * **Injeção de dependência (DI)**
 * **RESTful Controllers**
 * **Docker** + Dockerfile para deploy containerizado
-
----
-
-## 📂 Estrutura do Projeto
-
-```
-Partner.WorldTel.Did/
-│
-├── Partner.WorldTel.Did.Api/
-│   ├── Controllers/
-│   │   ├── AuthController.cs
-│   │   └── InternationalDidsController.cs
-│   │
-│   ├── Data/
-│   │   └── AppDbContext.cs
-│   │
-│   ├── DTO/
-│   │   ├── CreateDidFromNumberRequest.cs
-│   │   ├── LoginRequest.cs
-│   │   └── LoginResponse.cs
-│   │
-│   ├── Enum/
-│   │   └── DidStatus.cs
-│   │
-│   ├── Interface/
-│   │   ├── IAuthService.cs
-│   │   └── IDidGeneratorService.cs
-│   │
-│   ├── Migrations/
-│   ├── appsettings.json
-│   ├── Program.cs
-│   ├── Dockerfile
-│   └── WorldTelDatabase.db
-│
-└── Partner.WorldTel.Did.slnx
-```
 
 ---
 
@@ -160,6 +123,10 @@ A API utiliza:
 Execute a migração (se necessário):
 
 ```bash
+dotnet tool install --global dotnet-ef
+
+dotnet ef migrations add PrimeiraMigration
+
 dotnet ef database update
 ```
 
@@ -204,7 +171,7 @@ contém requisições prontas para teste via:
 1. Clone o repositório:
 
 ```bash
-git clone https://github.com/seu-user/Partner.WorldTel.Did.git
+git clone https://github.com/danhpaiva/partner-worldtel-mvc-api-did-net
 ```
 
 2. Acesse a pasta do projeto:
@@ -222,8 +189,9 @@ dotnet run
 A API ficará disponível em:
 
 ```
-https://localhost:7264
-http://localhost:5049
+https://localhost:7264/scalar/
+
+https://localhost:7264/swagger/index.html
 ```
 
 ---
@@ -243,6 +211,7 @@ http://localhost:5049
 **Daniel Paiva**
 Desenvolvedor .NET | Professor Universitário
 
-![Stars](https://img.shields.io/github/stars/danhpaiva/Partner.WorldTel.Did?style=for-the-badge)
-![Forks](https://img.shields.io/github/forks/danhpaiva/Partner.WorldTel.Did?style=for-the-badge)
-![Issues](https://img.shields.io/github/issues/danhpaiva/Partner.WorldTel.Did?style=for-the-badge)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](SEU-LINKEDIN-AQUI)
+![Stars](https://img.shields.io/github/stars/danhpaiva/partner-worldtel-mvc-api-did-net?style=for-the-badge)
+![Forks](https://img.shields.io/github/forks/danhpaiva/partner-worldtel-mvc-api-did-net?style=for-the-badge)
+![Issues](https://img.shields.io/github/issues/danhpaiva/partner-worldtel-mvc-api-did-net?style=for-the-badge)
